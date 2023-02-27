@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//  import {Rating} from "@mui/material"
+//  import {Rating as Rate} from "@mui/material"
  
 function Explore({image,des, p1, p2, p3, rating }) {
     const[value,setValue]=useState(0)
@@ -17,7 +17,7 @@ function Explore({image,des, p1, p2, p3, rating }) {
         </div>
       
         <div className="star">
-        {/* <Rating  
+        {/* <Rate 
   name="simple-controlled"
   value={rating}
   onChange={(event, newValue) => {

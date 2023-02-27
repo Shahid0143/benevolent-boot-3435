@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
     Box,
@@ -17,6 +17,12 @@ import {
     useBreakpointValue,
     useDisclosure,
     Img,
+    MenuButton,
+    Avatar,
+    MenuList,
+    MenuItem,
+    MenuDivider,
+    Menu,
    
   } from '@chakra-ui/react';
   import {
@@ -25,18 +31,30 @@ import {
     ChevronDownIcon,
     ChevronRightIcon,
   } from '@chakra-ui/icons';
+  // import { Link } from 'react-router-dom';
   
   export default function  Navbar() {
     const { isOpen, onToggle } = useDisclosure();
-  
+    const login=JSON.parse(localStorage.getItem('login'))
+    const data=JSON.parse(localStorage.getItem('data'))
+
+    const handleLogout=()=>{
+      localStorage.clear()
+      window.location.reload()
+    }
+     
+    const addcard=()=>{
+      window.location.assign('/addcard')
+    }
     return (
       <Box className='fix'>
         <Flex
           bg={useColorModeValue('rgb(51,51,51)', 'gray.800')}
-          color={useColorModeValue('gray.600', 'white')}
+          color={useColorModeValue('white', 'white')}
           minH={'90px'}
-          py={{ base: 2 }}
-          px={{ base: 4 }}
+          
+          py={{ base: 5 }}
+          px={{ base: 9 }}
           borderBottom={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -60,7 +78,7 @@ import {
               fontFamily={'heading'}
               color={useColorModeValue('white', 'white')}>
                 <div className='osma'>
-              <h1><b>POSHAAQUE</b></h1>
+              <a href='/' ><h1><b>POSHAAQUE</b></h1></a>
               </div>
             </Text>
   
@@ -75,17 +93,47 @@ import {
           
             direction={'row'}
             spacing={10}>
-              <Img width="13%" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png" alt="osam" />
+
+              <Img width="13%" onClick={addcard} src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png" alt="osam" />
+           
             <Button
               as={'a'}
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
               color={'white'}
-              href={'#'}>
+              href={'/Signin'}>
               Sign In
             </Button>
-            <Button
+           {login===true ? <Menu>
+            <MenuButton
+            as={Button}
+            rounded={"full"}
+            variant={'link'}
+            cursor={'pointer'}
+            minW={0}
+            >
+             <Avatar
+             size={'sm'}
+             src={data.user.photoURL}
+             
+             ></Avatar>
+
+          </MenuButton>
+          <MenuList style={{color:'black'}}>
+
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>Setting</MenuItem>
+          <MenuDivider/>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        
+          </MenuList>
+        </Menu>:  <a href='/signup'><Button color={'green'} >SignIn</Button></a>}
+
+
+
+
+            {/* <Button
               as={'a'}
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
@@ -93,12 +141,12 @@ import {
               padding={'1.2rem'}
               color={'white'}
               bg={'red.300'}
-              href={'#'}
+              href={'/signup'}
               _hover={{
                 bg: 'black',
               }}>
               Sign Up
-            </Button>
+            </Button> */}
           </Stack>
         </Flex>
   
@@ -111,8 +159,8 @@ import {
   
   const DesktopNav = () => {
     const linkColor = useColorModeValue('white', 'white');
-    const linkHoverColor = useColorModeValue('green.400', 'white');
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+    const linkHoverColor = useColorModeValue('green', 'white');
+    const popoverContentBgColor = useColorModeValue('teal', 'gray.800');
   
     return (
       <Stack  direction={'row'} spacing={4}>
@@ -126,6 +174,7 @@ import {
                   fontSize={'sm'}
                   fontWeight={500}
                   color={linkColor}
+                 
                   _hover={{
                     textDecoration: 'none',
                     color: linkHoverColor,
@@ -268,8 +317,8 @@ import {
           href: '/Menpage',
         },
         {
-          label: 'Best Sellers',
-          href: '#',
+          label: 'Shoes',
+          href: 'shoe',
         },
         {
           label: 'Featured',
@@ -300,7 +349,7 @@ import {
           href: '#',
         },
         {
-          label: 'Shoes',
+          label: 'Best Seller',
           href: '#',
         },
         
@@ -311,14 +360,14 @@ import {
       children: [
         {
           label: 'Shop All Women',
-          href: '#',
+          href: '/women',
         },
         {
           label: 'New Arrival',
           href: '#',
         },
         {
-          label: 'Best Sellers',
+          label: 'Shoes',
           href: '#',
         },
         {
@@ -346,7 +395,7 @@ import {
           href: '#',
         },
         {
-          label: 'Shoes',
+          label: 'Best Sellers',
           href: '#',
         },
         {
@@ -361,14 +410,14 @@ import {
       children: [
         {
           label: 'Shop All Kids',
-          href: '#',
+          href: '/kidpage',
         },
         {
           label: 'New Arrival',
           href: '#',
         },
         {
-          label: 'Best Sellers',
+          label: 'Shoes',
           href: '#',
         },
         {
@@ -396,7 +445,7 @@ import {
           href: '#',
         },
         {
-          label: 'Shoes',
+          label: 'Best Sellers',
           href: '#',
         },
         {

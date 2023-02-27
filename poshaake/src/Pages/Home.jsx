@@ -2,6 +2,8 @@ import React from 'react'
 import Slider from 'react-slick';
 import Explore from '../Components/Explore';
 import Featured from '../Components/Featured';
+import Footer from '../Components/Footer';
+import Navbar from '../Components/Navbar';
 import Seasonal from '../Components/Seasonal';
 
 function Home() {
@@ -295,8 +297,8 @@ function Home() {
             breakpoint: 1024,
             setting2: {
               arrows: true,
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: 2,
+              slidesToScroll: 2,
               infinite: true,
               dots: true
             }
@@ -324,15 +326,19 @@ function Home() {
 
   return (
     <div className='start'>
+      <Navbar/>
        {/*................................. ..Starting .......................................................*/}
 
       <div className='don'>
-      <img  width ="100%" src="https://columbia.scene7.com/is/image/ColumbiaSportswear2/COL_US_Evergreen_Trail_Hero_v2_XL?$aem_pjpeg$" alt="" />
-      <div style={{border:"1px solid blue"}}></div>
+
+     <h1>Lorem ipsum dolor sit.</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit corrupti perferendis quia totam expedita architecto. Optio doloremque quos porro placeat!</p>
+      
       </div>
 
     <div> 
 
+      <div style={{border:"1px solid blue"}}></div>
           {/*.................................. Mid Portion.....................................................*/}
 
    <h1>Seasonal Essentials</h1>
@@ -482,7 +488,7 @@ function Home() {
 
   <div className='moon'>
    
-     <div>
+     <div className='oso'>
     <img width="100%" src="https://lmg-labmanager.s3.amazonaws.com/assets/articleNo/29120/aImg/52433/how-magnetism-could-help-explain-earth-s-formation-m.webp" alt="" />
     </div>
      <div className='moon1'>
@@ -545,7 +551,7 @@ Chat: 5am-8pm PT Sat/Sun, 4am-9pm PT Mon-Fri</h4>
 
   </div>
   
-
+<Footer/>
  </div>
      
 

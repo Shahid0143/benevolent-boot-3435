@@ -11,9 +11,10 @@ import '@fontsource/roboto/700.css';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Navbar from './Components/Navbar';
-import Footer from './Components/Footer';
+// import Navbar from './Components/Navbar';
+// import Footer from './Components/Footer';
 import AllRoutes from './Components/AllRoutes';
+// import Home from './Pages/Home';
 // import Menpage from './Pages/Menpage';
 
 
@@ -23,11 +24,9 @@ import AllRoutes from './Components/AllRoutes';
 function App() {
   return (
     <div >
-      <Navbar/>
-    {/* <Home/> */}
+    
     <AllRoutes/>
-    <Footer/>
-   {/* <Menpage/> */}
+ 
 
     </div>
   );

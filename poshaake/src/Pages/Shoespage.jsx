@@ -29,7 +29,7 @@ function Mens() {
   
     
     const getdata=(order,name)=>{
-       return axios.get(`http://localhost:8080/women?_name=${name}&_sort=${price}&_order=${order}`).then((res)=>{ 
+       return axios.get(`http://localhost:8080/shoe?_name=${name}&_sort=${price}&_order=${order}`).then((res)=>{ 
 
 SetData(res.data)
 setSearchFilter(res.data)
@@ -71,9 +71,13 @@ setSearchFilter(res.data)
     
     <div >
       <Navbar/>
-      
+      {/* <h1>OSAMA</h1>
+      <h1>OSAMA</h1>
+      <h1>OSAMA</h1>
+      <h1>OSAMA</h1>
+      <h1>OSAMA</h1> */}
       <div style={{marginTop:'100px'}} className="sortingButtons">
-        <h1>Shop All Women's</h1>
+        <h1>Shoe's</h1>
         <div className='bk'>
           
         <Button colorScheme={"blue"} className="sortByCostAsc" onClick={()=>
@@ -105,7 +109,7 @@ setSearchFilter(res.data)
        
       
 
-          <SimpleGrid columns={4} p={10} gap={5} className="main_container">
+          <SimpleGrid columns={3} p={10} gap={5} className="main_container">
           
           
           {data.map((item)=>(

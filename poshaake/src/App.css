@@ -37,7 +37,17 @@
   
 }
 .start .don {
+  margin-top: 88px;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+
 padding-bottom: 200px;
+background: url(https://columbia.scene7.com/is/image/ColumbiaSportswear2/37317_C_U_Q1_WinterSale5_HP_Hero_XL?$aem_pjpeg$);
 }
 
 .pic .pic1{
@@ -193,6 +203,17 @@ z-index: 4;
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.oso{
+  background: url(https://lmg-labmanager.s3.amazonaws.com/assets/articleNo/29120/aImg/52433/how-magnetism-could-help-explain-earth-s-formation-m.webp);
+}
+.kick {
+  margin-top: 100px;
+  font-weight: bolder;
+  font-size: xx-large;
+  padding-left: 40px;
+  
 }
 
 @media (prefers-reduced-motion: no-preference) {

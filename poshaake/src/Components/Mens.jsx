@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Footer from './Footer'
 
 import axios from "axios"
 import{
@@ -9,71 +10,167 @@ import{
   Img,
   Text,
   Button,
+  Select,
  
+
 } from "@chakra-ui/react"
-
+import Navbar from './Navbar'
 function Mens() {
-    const[data,setData]=useState([])
-    const getdata=()=>{
-       return axios.get(" http://localhost:8080/men").then((res)=>{
+    const[data,SetData]=useState([])
+    const[order,SetOrder]=useState("")
+    const[name,setName]=useState(null)
+    const price="price"
+   
+    const [searchFilter, setSearchFilter] = useState([]);
+    const [result, setResult] = useState("");
+    const cartdata=JSON.parse(localStorage.getItem('data'))||[];
+    
+    const flag=false;
+     const handleclick=(item)=>{
+      
+      for( let i=0;i<cartdata.length;i++){
+        if(item.id==cartdata[i].id){
+          flag=true
+        }
+      }
+      if(flag){
+        alert("done")
+      }else{
+        cartdata.push(item)
+        localStorage.setItem("data",JSON.stringify(cartdata))
+        alert("Product Added to cart")
+      }
+     }
+    
+    const getdata=(order,name)=>{
+       return axios.get(`http://localhost:8080/men?_name=${name}&_sort=${price}&_order=${order}`).then((res)=>{ 
 
-setData(res.data)
+SetData(res.data)
+setSearchFilter(res.data)
 
           
         })
+
        
       
     }
+    useEffect(() =>{
+      const results = searchFilter.filter(resp =>
+         resp.name.toLowerCase().includes(result)
+      );
+      SetData(results)
+    },[result])
+    const onChange = (evt) => {
+      setResult(evt.target.value);
+      }  
+    
     useEffect(()=>{
-        getdata()
-    })
-  return (
-    <div id='card'>
-      <h1>SHOP ALL MEN'S</h1>
+        getdata(order,name)
+    },[order,name])
+    // const handledlt =(id)=>{
 
-       
-      <SimpleGrid columns={4} p={10} gap={5} className="main_container">
-      {data.map((item)=>(
-        <Box className="mens"
-        key={item.id}
-        borderRadius={"10px"}
-        boxShadow={"box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"}
-        
-        >
-          <Center>
-            <Img 
-            borderRadius={"10px"}
-            height={"300px"}
-            width={"300px"}
-            src={item.image}
-            />
-          </Center>
-
-          <VStack spacing={2} p={2}>
-            <Button 
-            style={{border:"0.1px solid black",backgroundColor:"black",color:"white"}}
-            >Quick Shop</Button>
-            <Text 
-            h={"150px"}
-            lineHeight="1.5em"
-            height={"4em"}
-            overflow={"hidden"}
-            
-            className="description">{item.description}</Text>
-            <Text className="name" fontSize={"20px"} fontWeight="2px">{item.name}</Text>
-            <Text className="cost">{item.price}</Text>
-            
-            
-           
-           
-            
-          </VStack>
-        </Box>
-      ))}
-      </SimpleGrid>
+    // return axios({
+    //   method:"delete",
+    //   url:`http://localhost:8080/men${id}` 
       
-    </div>
-  )
+    //  })
+    // };
+    
+ 
+   
+    
+  
+    
+  return (
+    
+    <div >
+      <Navbar/>
+      {/* <h1>OSAMA</h1>
+      <h1>OSAMA</h1>
+      <h1>OSAMA</h1>
+      <h1>OSAMA</h1>
+      <h1>OSAMA</h1> */}
+      <div style={{marginTop:'100px'}} className="sortingButtons">
+        <h1>All Men's Shop</h1>
+        <div className='bk'>
+          
+        <Button colorScheme={"blue"} className="sortByCostAsc" onClick={()=>
+        
+        
+           SetOrder("asc")}>
+            {" "}
+          Sort by Asc{" "}
+        </Button>
+        <Button colorScheme={"teal"} className="sortByCostDesc"  m={5} onClick={()=>
+
+        
+        SetOrder("desc")}>{" "}
+          Sort by Desc{" "}
+        </Button>
+        </div>
+        <div>
+       
+        <input onChange={onChange}  type="text" placeholder='Search here......'></input>
+        </div>
+      </div>
+      
+        <Select onChange={(e)=>{
+          setName(e.target.value)
+        }} style={{color:"black",background:"gray",marginLeft:'10px'}} width="20%" placeholder="select option">
+          <option style={{color:'green'}} value="name">Name</option>
+          <option  style={{color:'green'}} value="price">Price</option>
+        </Select>
+       
+      
+
+          <SimpleGrid columns={3} p={10} gap={5} className="main_container">
+          
+          
+          {data.map((item)=>(
+            <Box className="mens"
+            key={item.id}
+            borderRadius={"10px"}
+            boxShadow={"box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"}
+            
+            >
+              <Center>
+                <Img 
+                borderRadius={"10px"}
+                height={"300px"}
+                width={"300px"}
+                src={item.image}
+                />
+              </Center>
+    
+              <VStack spacing={2} p={2}>
+                <Button 
+                   onClick={()=>handleclick(item)}
+                
+                style={{backgroundColor:'black',color:'white'}}>Quick Shop</Button>
+                <h5 style={{color:"teal"}} className="name" fontSize={"20px"} fontWeight="bold">{item.name}</h5>
+                <h5
+                h={"150px"}
+                lineHeight="1.5em"
+                height={"4em"}
+                overflow={"hidden"}
+                
+                className="description">{item.description}</h5>
+                <Text className="cost">{item.price}</Text>
+              
+               
+               
+                
+              </VStack>
+            </Box>
+          ))}
+          </SimpleGrid>
+          <Footer/>
+        </div>
+       
+      )
+      
+    
+  
 }
 
 export default Mens

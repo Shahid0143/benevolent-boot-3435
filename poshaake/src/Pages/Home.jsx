@@ -331,18 +331,36 @@ function Home() {
 
       <div className='don'>
 
-     <h1>Lorem ipsum dolor sit.</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit corrupti perferendis quia totam expedita architecto. Optio doloremque quos porro placeat!</p>
-      
+      <div className='round'>
+      <p>WINTER</p>
+      <h1>SALE</h1>
+     </div>
+     <br />
+
+     <div className='last'>
+      <div className='chance'>
+      <h1>LAST CHANCE</h1>
+       <h1>UP TO 50% OFF</h1>
+     </div>
+      <br />
+      <div className='gear'>
+      <h3>SELECT GEAR</h3>
       </div>
+      <div className='sale'>
+      <button>SHOP WINTER SALE</button>
+      </div>
+
+     </div>
+     </div>
+
 
     <div> 
 
       <div style={{border:"1px solid blue"}}></div>
           {/*.................................. Mid Portion.....................................................*/}
-
+          <div className='sea'>
    <h1>Seasonal Essentials</h1>
-
+    </div>
    <Slider {...settings}>
    
    {
@@ -382,7 +400,9 @@ function Home() {
 {/*.................................. Mid 1 Portion.....................................................*/}
 
     <div>
+    <div className='sea'>
     <h1>Featured Favorites</h1>
+    </div>
   
   <Slider {...setting1}>
 
